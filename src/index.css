@@ -1,0 +1,324 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F6F8F6;
+  --color-paper-raised: #FFFFFF;
+  --color-paper-sunken: #F0F4F2;
+  --color-line: #DCE5E1;
+  --color-border: #DCE5E1;
+  --color-dial-ring: #DCE5E1;
+  --color-tick: #697775;
+  --color-ink: #15201F;
+  --color-ink-soft: #697775;
+  --color-ink-faint: #697775;
+  --color-copper: #176D70;
+  --color-copper-deep: #13585A;
+  --color-primary: #176D70;
+  --color-deep-teal: #176D70;
+  --color-teal-soft: #E4F1EF;
+  --color-verdigris: #2F7D68;
+  --color-success: #2F7D68;
+  --color-ochre: #C4872D;
+  --color-warning: #C4872D;
+  --color-rust: #B94A48;
+  --color-error: #B94A48;
+
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root,
+[data-theme="dark"],
+.dark {
+  --paper: #F6F8F6;
+  --paper-raised: #FFFFFF;
+  --paper-sunken: #F0F4F2;
+  --line: #DCE5E1;
+  --border: #DCE5E1;
+  --dial-ring: #DCE5E1;
+  --tick: #697775;
+  --ink: #15201F;
+  --ink-soft: #697775;
+  --ink-faint: #697775;
+  --primary: #176D70;
+  --deep-teal: #176D70;
+  --copper: #176D70;
+  --copper-deep: #13585A;
+  --teal-soft: #E4F1EF;
+  --verdigris: #2F7D68;
+  --success: #2F7D68;
+  --ochre: #C4872D;
+  --warning: #C4872D;
+  --rust: #B94A48;
+  --error: #B94A48;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Paper grain overlay disabled for clean Pearl Stitch canvas */
+.paper-grain-overlay {
+  display: none;
+}
+
+/* Observatory Precision Focus Ring */
+:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+
+/* Editorial Line & Border Utilities */
+.hairline-b {
+  border-bottom: 1px solid var(--line);
+}
+.hairline-t {
+  border-top: 1px solid var(--line);
+}
+.hairline-l {
+  border-left: 1px solid var(--line);
+}
+.hairline-r {
+  border-right: 1px solid var(--line);
+}
+.instrument-card {
+  background-color: var(--paper-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+/* Typography Helpers */
+.font-display {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.font-sans {
+  font-family: 'Inter', sans-serif;
+}
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: 'tnum';
+}
+
+/* Page Transition: Copper Calibration Curtain (550-750ms Target: 650ms) */
+@keyframes curtainSweep {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0.95;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0.95;
+  }
+}
+
+.curtain-active {
+  animation: curtainSweep 0.65s cubic-bezier(0.7, 0, 0.25, 1) forwards;
+}
+
+/* Mechanical Opening Sequence & Element Motion Keyframes */
+@keyframes mechFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes mechRise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mechRiseSmall {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mechLineDraw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes mechRingDraw {
+  from {
+    stroke-dashoffset: 400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes mechDialCalibrate {
+  0% {
+    transform: rotate(-35deg);
+  }
+  60% {
+    transform: rotate(18deg);
+  }
+  85% {
+    transform: rotate(-6deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes mechPlateEngrave {
+  0% {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.005) translateY(-1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes mechShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+
+@keyframes copperTrace {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Mechanical Animation Utility Classes */
+.animate-mech-fade {
+  animation: mechFadeIn 0.4s ease-out forwards;
+}
+.animate-mech-rise {
+  animation: mechRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-mech-rise-sm {
+  animation: mechRiseSmall 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-mech-line {
+  transform-origin: left;
+  animation: mechLineDraw 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-mech-ring {
+  stroke-dasharray: 400;
+  animation: mechRingDraw 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-mech-needle {
+  transform-origin: 50% 50%;
+  animation: mechDialCalibrate 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.animate-mech-plate {
+  animation: mechPlateEngrave 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-mech-shake {
+  animation: mechShake 0.35s ease-in-out;
+}
+
+/* Mechanical Stagger Delays (70ms-150ms intervals) */
+.delay-mech-1 { animation-delay: 80ms; animation-fill-mode: both; }
+.delay-mech-2 { animation-delay: 160ms; animation-fill-mode: both; }
+.delay-mech-3 { animation-delay: 250ms; animation-fill-mode: both; }
+.delay-mech-4 { animation-delay: 360ms; animation-fill-mode: both; }
+.delay-mech-5 { animation-delay: 480ms; animation-fill-mode: both; }
+.delay-mech-6 { animation-delay: 620ms; animation-fill-mode: both; }
+.delay-mech-7 { animation-delay: 780ms; animation-fill-mode: both; }
+.delay-mech-8 { animation-delay: 940ms; animation-fill-mode: both; }
+.delay-mech-9 { animation-delay: 1100ms; animation-fill-mode: both; }
+.delay-mech-10 { animation-delay: 1280ms; animation-fill-mode: both; }
+.delay-mech-11 { animation-delay: 1460ms; animation-fill-mode: both; }
+.delay-mech-12 { animation-delay: 1650ms; animation-fill-mode: both; }
+
+/* Engineered Input Precision Baseline */
+.engineered-input-wrapper {
+  position: relative;
+}
+.engineered-input-baseline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--copper);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.engineered-input:focus ~ .engineered-input-baseline {
+  transform: scaleX(1);
+}
+
+/* Copper Loading Shimmer Trace */
+.btn-loading-trace {
+  background: linear-gradient(
+    90deg,
+    var(--copper) 0%,
+    var(--ochre) 50%,
+    var(--copper) 100%
+  );
+  background-size: 200% 100%;
+  animation: copperTrace 1.6s infinite linear;
+}
+
+/* Theme Smooth Transitions */
+body, header, footer, .instrument-card, .bg-paper, .bg-paper-raised {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Respect Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
